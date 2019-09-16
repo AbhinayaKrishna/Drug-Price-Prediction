@@ -40,46 +40,4 @@ These are just two examples of drugs whose prices.  Of necessity, the project wi
 </ul>
 
 <h3>END RESULT:</h3> 
-A handful of the datasets have APIs that I can connect to, and the remainder I plan on scraping and importing the data into the model.  The predictions will be output to a dynamic (live) dashboard where the various types of medications can be selected, and their historical and predicted prices viewed.  I also hope to implement several other pieces of information that will either be displayed (i.e. patent expiry dates) or selectable (i.e. drug delivery route, methods)
-
-<h2>Other Considerations</h2>
-<b>QUESTION:</b> What is the effect of a drug’s remaining patent time on the price?
-<ul>
-  <il><b>DATA REQUIRED:</b> Drug patent information</il>
-  <ul>
-    <il><b>SOURCE:</b>  FDA Orange Book (listed above)</il>
-  </ul>
-</ul>
-<ul>
-  <il><b>PROCESS:</b>  Regress remaining patent time on</il>
-  <ul>
-    <il><b>CAVEATS:</b> </il>
-    <ul>
-    <il>There are several different ways that pharmaceutical companies may extend their patent expiry date, so I must be careful to evaluate these dates effectively. 
-    <il>Additionally, to date, I’ve yet to be able to merge the patents and prices datasets (via the fuzzywuzzy library – calculating the Levenshtein distance, and Dask)
-  </ul>
-<il>WHY IT MATTERS:</li> <i>For individuals, elected officials:</i>  
-  <ul>
-  </il>Pharmaceutical companies argue that patents are a critical incentive for the development of (costly) drugs.  This question sheds light on that statement in the form of regular updates (unlike an academic papers).</li>
-  <ul>
-•	QUESTION: What is the effect positive/negative news of a drug on the cost of the reported drug?
-o	DATA REQUIRED:  News articles (headlines?)
-	SOURCE: Google News API (here)
-o	PROCESS: Sentiment analysis of news headlines/articles including the name of the drugs.  Inclusion of this analysis as a feature in the prediction of future prices.
-	CAVEATS:
-•	Accuracy of the sentiment analysis
-•	Will its effect (inaccurately) be magnified/reduced when implemented with other features?
-o	WHY IT MATTERS: 
-	For individuals, insurance companies, pharmacies: In some historical cases, pharmaceutical companies have reduced drug prices based on media attention (particularly to price hikes).
-	For pharmaceutical companies: It could be helpful to quantify the amount of “heat” a drug can take as an understanding of how to manage a PR situation as it evolves.
- 
-•	QUESTION:  Are pharmaceutical companies pricing their drugs on the percentage of the population that require them, or based on the cost of development?
-o	DATA REQUIRED: Proportion of the U.S. population with particular diseases (i.e. diabetes), and their location
-o	SOURCE(S): Chronic diseases by county – CDC (here), and U.S. population by county (here).  Combining these two will give us the actual number of people estimated with each type of disease.  A friend of mine, a healthcare professional, will help me create a dictionary of the most common disease and the drugs used for treatment (also, potentially data here).
-	  Also, I could look at balance sheets (10-Q) from the SEC for each pharmaceutical company in the dataset to obtain revenue/R&D/profit figures
-	  Stock share prices could also be considered in place of revenue figures
-o	PROCESS:  Join population dataset with chronic disease percentages at the county level.  Then use that to derive a ‘count with disease’ feature.
-o	  CAVEATS: 
-	Unless I find a dataset correlating the use of specific drugs for specific diseases, I’ll need to cut back on the number of drugs
-•	WHY IT MATTERS:
-•	This question identifies whether companies interested in the pricing of pharmaceutical drugs should be looking at company revenue, the population needing the drugs, or both.
+A handful of the datasets have APIs that I can connect to, and the remainder I plan on scraping and importing the data into the model.  The predictions will be output to a dynamic (live) dashboard where the various types of medications can be selected, and their historical and predicted prices viewed.  I also hope to implement several other pieces of information that will either be displayed (i.e. patent expiry dates) or selectable (i.e. drug delivery route, methods).
