@@ -2,7 +2,7 @@
 <h1>Project Map - Pharmaceutical Drug Predictions</h1>
 
 <h3>BACKGROUND:</h3>  
-Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise (see plot???), but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
+Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
 
 <h3>PURPOSE:</h3>
 The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
