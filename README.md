@@ -26,12 +26,13 @@ Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is
 The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
 
 <h3>DATA SOURCES:</h3>
- Patent data comes from the FDA’s Orange Book website, [here]('https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
 
-* Drug price data comes from the [Medicaid.gov site]('https://healthdata.gov/dataset/nadac-national-average-drug-acquisition-cost'). This dataset comes from surveys produced by the U.S. government to chain and independent pharmacies.  The surveys record the prices paid by retail pharmacies to purchase drug products.  The dataset is updated monthly, with weekly price changes noted.   
-   * A data dicationary for the drug price data can be found [here]('https://www.medicaid.gov/medicaid-chip-program-information/by-topics/prescription-drugs/ful-nadac-downloads/nadacdatadefinitions.pdf')
+Patent data comes from the FDA's Orange Book website, found [here](https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files).
+
+ * Drug price data comes from the [Medicaid.gov website](https://healthdata.gov/dataset/nadac-national-average-drug-acquisition-cost). This dataset comes from surveys produced by the U.S. government to chain and independent pharmacies.  The surveys record the prices paid by retail pharmacies to purchase drug products.  The dataset is updated monthly, with weekly price changes noted.   
+    * A data dicationary for the drug price data can be found [here](https://www.medicaid.gov/medicaid-chip-program-information/by-topics/prescription-drugs/ful-nadac-downloads/nadacdatadefinitions.pdf)
     
-The following three files come are gathered from a dataset known as the 'Orange Book' (the FDA's dataset on drug approvals).  Source data & the accompanying dictionary can be found [here]('https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
+The following three files come are gathered from a dataset known as the 'Orange Book' (the FDA's dataset on drug approvals).  Source data & the accompanying dictionary can be found [here](https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
 * `products.txt`: specific information regarding products registered with the FDA
   * Trade name
   * Applicant
@@ -39,7 +40,7 @@ The following three files come are gathered from a dataset known as the 'Orange 
   * Product Number
   * <b>Approval Date</b>
   * Type
-* `patent.txt`: patent data as available for each drug ([note]('https://www.fda.gov/drugs/development-approval-process-drugs/frequently-asked-questions-patents-and-exclusivity#What_is_the_difference_between_patents_a'), this is different from exclusivity).  Columns of interest:
+* `patent.txt`: patent data as available for each drug ([note](https://www.fda.gov/drugs/development-approval-process-drugs/frequently-asked-questions-patents-and-exclusivity#What_is_the_difference_between_patents_a), this is different from exclusivity).  Columns of interest:
   * New Drug Application (NDA) Number
   * Product Number
   * Patent Number
@@ -101,15 +102,15 @@ I'll evaluate the dates we currently have to see if a pattern is evident, before
 * Pharmacy Benefit Manager (PBM) stock prices (proxy with pharma stock prices for the cost of pharmaceuticals to consumers)?
 
 <h3><b>Other Information:</b></h3>
-#### A few definitions to keep in mind:
-* A __drug product__ is a finished dosage form, e.g., tablet, capsule, or solution, that contains a drug substance, generally, but not necessarily, in association with one or more other ingredients. 
+
+A few definitions to keep in mind:
+ * A __drug product__ is a finished dosage form, e.g., tablet, capsule, or solution, that contains a drug substance, generally, but not necessarily, in association with one or more other ingredients. 
     * e.g. formulation and composition
-* A __drug substance__ is an active ingredient that is intended to furnish pharmacological activity or other direct effect in the diagnosis, cure, mitigation, treatment, or prevention of disease or to affect the structure or any function of the human body, but does not include intermediates used in the synthesis of such ingredient. 
+ * A __drug substance__ is an active ingredient that is intended to furnish pharmacological activity or other direct effect in the diagnosis, cure, mitigation, treatment, or prevention of disease or to affect the structure or any function of the human body, but does not include intermediates used in the synthesis of such ingredient. 
     * e.g. active ingredient
     
 <h3><b>Additional Literature</b></h3>
-A couple articles of interest:
 
-   *[Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
+* [Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
    
-   *[NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
+* [NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
