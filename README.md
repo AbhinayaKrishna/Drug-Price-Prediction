@@ -26,7 +26,7 @@ Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is
 The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
 
 <h3>DATA SOURCES:</h3>
- Patent data comes from the FDA’s Orange Book website, (here)['https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files'].
+ Patent data comes from the FDA’s Orange Book website, [here]('https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
 
 * Drug price data comes from the [Medicaid.gov site]('https://healthdata.gov/dataset/nadac-national-average-drug-acquisition-cost'). This dataset comes from surveys produced by the U.S. government to chain and independent pharmacies.  The surveys record the prices paid by retail pharmacies to purchase drug products.  The dataset is updated monthly, with weekly price changes noted.   
    * A data dicationary for the drug price data can be found [here]('https://www.medicaid.gov/medicaid-chip-program-information/by-topics/prescription-drugs/ful-nadac-downloads/nadacdatadefinitions.pdf')
