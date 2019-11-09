@@ -58,7 +58,7 @@ The following three files come are gathered from a dataset known as the 'Orange 
 
 Those in bold are of peak interest.  Although the identified columns are those of clear interest, I'll leave the remaining columns in the datasets as I continue exploring.  
 
-I'll use the New Drug Application (NDA) Number to join the information from these three files before I begin cleaning and exploring the data.
+I used the New Drug Application (NDA) Number to join the information from these three files.
 
 The price (NADAC) dataset has 1M+ rows with 12 columns (though maybe only half of those will be useful).  The patent (FDA Orange Book) dataset has roughly 55K rows with 27 columns (half of which could provide predictive power). 
 
@@ -72,7 +72,7 @@ Following, you will see a plot for the price of ibuprofen over time.  Although t
 These are just two examples of drugs whose prices.  Of necessity, the project will continue to evolve, and apply more features to create better predictions; price over time is insufficient.  The datasets mentioned above will add some features.  Those datasets listed below will provide supplementary questions and features as I develop the predictive model.
 
 <h3>CURRENT RESULTS:</h3> 
-Currently, the project draws upon two APIs, though I hope to continue expanding this with more datasets.  I'm currently working on an interactive dashboard where the various types of medications can be selected, and their historical and predicted prices viewed.  Predictions currently have an R-squared of 0.9922, though I anticipate that this may drop as data for more brand_name drugs are introduced.  If this were entirely accurate, it would indicate that the majority of drug prices are really only a factor of the month and year of the date the price is recorded, and whether or not a drug has a therapeutic equivalent.  So far, patent data (i.e. days until the drug patent expires) has not proved to be as predictive as I hoped, though this may be due to the typically long lifespan of drugs.  
+Currently, the project draws upon two APIs, though I hope to continue expanding this with more datasets.  I'm currently working on an interactive dashboard where the various types of medications can be selected, and their historical and predicted prices viewed.  Predictions currently have an R-squared of 0.9922 (alternative metrics can be found in the `Regressions&Plotting` notebook), though I anticipate that this may drop as data for more brand_name drugs are introduced.  If this were entirely accurate, it would indicate that the majority of drug prices are really only a factor of the month and year of the date the price is recorded, and whether or not a drug has a therapeutic equivalent.  So far, patent data (i.e. days until the drug patent expires) has not proved to be as predictive as I hoped, though this may be due to the typically long lifespan of drugs.  
 
 I'll continue to update this section as new results are realized.  As mentioned before, other potential areas of improvement listed in the `To_Do.ipynb` notebook.  
 
