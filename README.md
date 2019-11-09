@@ -60,7 +60,7 @@ The price (NADAC) dataset has 1M+ rows with 12 columns (though maybe only half o
 While the datasets don’t line up perfectly, I’ve found that drug names in each of the two datasets can be matched well utilizing Levenshtein distance calculations (via the fuzzywuzzy library) and have been able to create row observations to match up dates jointly with the drug names so that the two datasets are merged on an entirely unique key.  
 
 <h3>FEASIBILITY ANALYSIS (EDA):</h3>
-In the [Exploratory Plots](Drug-Price-Prediction/ExploratoryPlots.ipynb), you'll find a plot displaying the price of four metformin-based drugs (a medication widely utilized to manage diabetes).
+In the Exploratory_Plots notebook, you'll find a plot displaying the price of four metformin-based drugs (a medication widely utilized to manage diabetes).
 
 Following, you will see a plot for the price of ibuprofen over time.  Although the correlation is not quite as strong as that of the metformin variants, there is still a clear path that can be followed (not to mention, an interesting upward trend at the end/beginning of 2018/2019).
 
