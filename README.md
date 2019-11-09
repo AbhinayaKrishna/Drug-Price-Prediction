@@ -96,6 +96,7 @@ Because I only have 1779 entries for patent dates, I figure I'll need more data 
 I'll evaluate the dates we currently have to see if a pattern is evident, before combining them with new estimations based on the factors above.
 
 <h3><b>Other datasets:</b></h3>
+
 * [Pharmaceutical Preparation Manufacturing - Producer Price Index by Industry]('https://fred.stlouisfed.org/series/PCU325412325412')
   * [Breakdown of the above]('https://fred.stlouisfed.org/release/tables?rid=46&eid=135301#snid=135309')
     
