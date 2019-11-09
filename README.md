@@ -15,7 +15,12 @@ This project demonstrates methods required to obtain, aggregate, and clean data 
 7) `Regression&Plotting.ipynb` - Light formatting and prep for regression, train-test-splitting.  Also contains the custom drug-grouping class for regressions and Bokeh plot code currently in development. This notebook currently makes use of the drug's NDC number (a unique identification number assigned by the FDA.  This number allows us to distinguis between not only drug names, but also delivery methods, strengths, and other factors, where a drug name itself would not necessarily suffice. This decision was made at the sacrifice of some readability. 
 8) `Drug_Price_Plots.py` - Bokeh plot application used to view plots of drug prices over time. Final product to include predictions created in notebook 7.  Must be run from the commandline with `bokeh serve --show Drug_Price_Plots.py`
 
-Additionally, the `To_Do.ipynb` notebook contains suggestions and initial code for improvements to the minimum viable product.
+<b>Additionally:</b> 
+* `To_Do.ipynb` notebook contains suggestions and initial code for improvements to the minimum viable product.
+* `patent.csv`, `exclusivity.csv`, `products.csv` are samples of the patent data from the FDA's orange book
+* `plotting_data.csv` contains data required by the Bokeh plot (`Drug_Price_Plots.py`) 
+* Other data samples were not included in this repo due to their size (e.g. price data), but can be found at the source link below
+
 
 <h1>Project Map - Pharmaceutical Drug Predictions</h1>
 
