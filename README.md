@@ -8,7 +8,7 @@ Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is
 The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
 
 <h3>ROOT DATA SOURCES:</h3>
-Drug price data comes from the Medicaid.gov site, [here][1].  Patent data comes from the FDA’s Orange Book website, (here)[https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files].
+Drug price data comes from the Medicaid.gov site, [here](1).  Patent data comes from the FDA’s Orange Book website, (here)[https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files].
 
 <h3>DATASETS:</h3>
 The price dataset has 1M+ rows with 12 columns (though maybe only half of those will be useful).  The Orange Book dataset has roughly 55K rows with 27 columns (half of which could provide predictive power).  As mentioned, the data comes through two (or more) different sources.  While the datasets don’t line up perfectly, I’ve found that drug names in each of the two datasets can be matched reasonably well utilizing Levenshtein distance calculations (via the fuzzywuzzy library).  The Medicaid website does have an API for the dataset.  This will facilitate up-to-date projections of prices in the final product.
