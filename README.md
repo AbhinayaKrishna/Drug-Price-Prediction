@@ -17,18 +17,21 @@ This project demonstrates methods required to obtain, aggregate, and clean data 
 
 Additionally, the `To_Do.ipynb` notebook contains suggestions and initial code for improvements to the minimum viable product.
 
-<h3><b>Additional Literature</b></h3>
-A few articles of interest: 
-* [Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
-* [NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
+<h1>Project Map - Pharmaceutical Drug Predictions</h1>
 
-* <b>national_average_drug_acquisition_cost.csv</b>: This dataset comes from surveys produced by the U.S. government to chain and independent pharmacies.  The surveys record the prices paid by retail pharmacies to purchase drug products.  The dataset is updated monthly, with weekly price changes.
+<h3>BACKGROUND:</h3>  
+Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
 
-    * A data dicationary can be found [here]('https://www.medicaid.gov/medicaid-chip-program-information/by-topics/prescription-drugs/ful-nadac-downloads/nadacdatadefinitions.pdf')
+<h3>PURPOSE:</h3>
+The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
+
+<h3>DATA SOURCES:</h3>
+ Patent data comes from the FDA’s Orange Book website, (here)['https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files'].
+
+* Drug price data comes from the [Medicaid.gov site]('https://healthdata.gov/dataset/nadac-national-average-drug-acquisition-cost'). This dataset comes from surveys produced by the U.S. government to chain and independent pharmacies.  The surveys record the prices paid by retail pharmacies to purchase drug products.  The dataset is updated monthly, with weekly price changes noted.   
+   * A data dicationary for the drug price data can be found [here]('https://www.medicaid.gov/medicaid-chip-program-information/by-topics/prescription-drugs/ful-nadac-downloads/nadacdatadefinitions.pdf')
     
-    * [Source data]('https://healthdata.gov/dataset/nadac-national-average-drug-acquisition-cost')
-
-The following three files come are gathered from the Orange Book (the FDA's dataset on drug approvals).  Source data & the accompanying dictionary can be found [here]('https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
+The following three files come are gathered from a dataset known as the 'Orange Book' (the FDA's dataset on drug approvals).  Source data & the accompanying dictionary can be found [here]('https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files').
 * `products.txt`: specific information regarding products registered with the FDA
   * Trade name
   * Applicant
@@ -49,21 +52,11 @@ The following three files come are gathered from the Orange Book (the FDA's data
 
 Those in bold are of peak interest.  Although the identified columns are those of clear interest, I'll leave the remaining columns in the datasets as I continue exploring.  
 
-I'll use the New Drug Application (NDA) Number to join the information from these three files and then begin cleaning and exploring the data.
+I'll use the New Drug Application (NDA) Number to join the information from these three files before I begin cleaning and exploring the data.
 
-<h1>Project Map - Pharmaceutical Drug Predictions</h1>
+The price (NADAC) dataset has 1M+ rows with 12 columns (though maybe only half of those will be useful).  The patent (FDA Orange Book) dataset has roughly 55K rows with 27 columns (half of which could provide predictive power). 
 
-<h3>BACKGROUND:</h3>  
-Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
-
-<h3>PURPOSE:</h3>
-The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
-
-<h3>ROOT DATA SOURCES:</h3>
-Drug price data comes from the Medicaid.gov site, [here](https://data.medicaid.gov/Drug-Pricing-and-Payment/NADAC-National-Average-Drug-Acquisition-Cost-/a4y5-998d).  Patent data comes from the FDA’s Orange Book website, (here)[https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files].
-
-<h3>DATASETS:</h3>
-The price (NADAC) dataset has 1M+ rows with 12 columns (though maybe only half of those will be useful).  The patent (FDA Orange Book) dataset has roughly 55K rows with 27 columns (half of which could provide predictive power).  As mentioned, the data comes through two (or more) different sources.  While the datasets don’t line up perfectly, I’ve found that drug names in each of the two datasets can be matched well utilizing Levenshtein distance calculations (via the fuzzywuzzy library) and have been able to create row observations to match up dates jointly with the drug names so that the two datasets are merged on an entirely unique key.  
+While the datasets don’t line up perfectly, I’ve found that drug names in each of the two datasets can be matched well utilizing Levenshtein distance calculations (via the fuzzywuzzy library) and have been able to create row observations to match up dates jointly with the drug names so that the two datasets are merged on an entirely unique key.  
 
 <h3>FEASIBILITY ANALYSIS (EDA):</h3>
 In the [Exploratory Plots](Drug-Price-Prediction/ExploratoryPlots.ipynb), you'll find a plot displaying the price of four metformin-based drugs (a medication widely utilized to manage diabetes).
@@ -113,3 +106,10 @@ I'll evaluate the dates we currently have to see if a pattern is evident, before
     * e.g. formulation and composition
 * A __drug substance__ is an active ingredient that is intended to furnish pharmacological activity or other direct effect in the diagnosis, cure, mitigation, treatment, or prevention of disease or to affect the structure or any function of the human body, but does not include intermediates used in the synthesis of such ingredient. 
     * e.g. active ingredient
+    
+<h3><b>Additional Literature</b></h3>
+A couple articles of interest:
+
+   *[Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
+   
+   *[NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
