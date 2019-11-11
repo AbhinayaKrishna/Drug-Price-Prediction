@@ -3,6 +3,7 @@
 <h3>Background & Motivation:</h3>  
 Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
 
+
 Pharmaceutical companies are not required to publish prices, therefore, we'll be drawing on a dataset from Medicare, who does publish prices.  Lack of price transparency is typically cited as a reason for high prices.  This study looks to shed some light on that, and to create a model that can predict drug prices months out from the current date.
 
 <h3><b>Audience and Purpose:</b></h3>
