@@ -120,8 +120,8 @@ A few definitions to keep in mind:
     
 <h3><b>Additional Literature</b></h3>
 
-* [Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
+* [Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow](https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d)
    
-* [NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
+* [NADAC pricing in the real world](https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf)
 
-* [Fact Sheet: How much money could Medicare save by negotiating prescription drug prices?]('http://www.crfb.org/press-releases/fact-sheet-how-much-money-could-medicare-save-negotiating-prescription-drug-prices')
+* [Fact Sheet: How much money could Medicare save by negotiating prescription drug prices?](http://www.crfb.org/press-releases/fact-sheet-how-much-money-could-medicare-save-negotiating-prescription-drug-prices)
