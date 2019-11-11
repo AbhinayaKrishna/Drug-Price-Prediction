@@ -1,9 +1,11 @@
 <h1><b>Drug Pricing Prediction Model</b></h1> 
 
-<h3><b>Motivation</b></h3>
+<h3>Background & Motivation:</h3>  
+Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
+
 Pharmaceutical companies are not required to publish prices, therefore, we'll be drawing on a dataset from Medicare, who does publish prices.  Lack of price transparency is typically cited as a reason for high prices.  This study looks to shed some light on that, and to create a model that can predict drug prices months out from the current date.
 
-<h3><b>Audience</b></h3>
+<h3><b>Audience and Purpose:</b></h3>
 This project aims to be a tool for pharmacies, pharmacy benefit managers, and other entities who may, for example, be in negotiations regarding pharmaceutical drug prices.  With the objective of providing clearer information regarding the future of drug prices, the steps required to achieve lower drug costs may also be more transparent.
 
 <h3><b>Structure</b></h3>
@@ -23,15 +25,6 @@ This project demonstrates methods required to obtain, aggregate, and clean data 
 * `patent.csv`, `exclusivity.csv`, `products.csv` are samples of the patent data from the FDA's orange book
 * `plotting_data.csv` contains data required by the Bokeh plot (`Drug_Price_Plots.py`) 
 * Other data samples were not included in this repo due to their size (e.g. price data), but can be found at the source link below
-
-
-<h1>Project Map - Pharmaceutical Drug Predictions</h1>
-
-<h3>BACKGROUND:</h3>  
-Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
-
-<h3>PURPOSE:</h3>
-The purpose of the study is to build a machine learning model that can deliver this transparency through the prediction of drug prices.
 
 <h3>DATA SOURCES:</h3>
 
@@ -67,14 +60,14 @@ The price (NADAC) dataset has 1M+ rows with 12 columns (though maybe only half o
 
 While the datasets don’t line up perfectly, I’ve found that drug names in each of the two datasets can be matched well utilizing Levenshtein distance calculations (via the fuzzywuzzy library) and have been able to create row observations to match up dates jointly with the drug names so that the two datasets are merged on an entirely unique key.  
 
-<h3>FEASIBILITY ANALYSIS (EDA):</h3>
+<h3>Feasibility Analysis (EDA):</h3>
 In the Exploratory_Plots notebook, you'll find a plot displaying the price of four metformin-based drugs (a medication widely utilized to manage diabetes).
 
 Following, you will see a plot for the price of ibuprofen over time.  Although the correlation is not quite as strong as that of the metformin variants, there is still a clear path that can be followed (not to mention, an interesting upward trend at the end/beginning of 2018/2019).
 
 These are just two examples of drugs whose prices.  Of necessity, the project will continue to evolve, and apply more features to create better predictions; price over time is insufficient.  The datasets mentioned above will add some features.  Those datasets listed below will provide supplementary questions and features as I develop the predictive model.
 
-<h3>CURRENT RESULTS:</h3> 
+<h3>Current Results:</h3> 
 Currently, the project draws upon two APIs, though I hope to continue expanding this with more datasets.  I'm currently working on an interactive dashboard where the various types of medications can be selected, and their historical and predicted prices viewed.  Predictions currently have an R-squared of 0.9922 (alternative metrics can be found in the `Regressions&Plotting` notebook), though I anticipate that this may drop as data for more brand_name drugs are introduced.  If this were entirely accurate, it would indicate that the majority of drug prices are really only a factor of the month and year of the date the price is recorded, and whether or not a drug has a therapeutic equivalent.  So far, patent data (i.e. days until the drug patent expires) has not proved to be as predictive as I hoped, though this may be due to the typically long lifespan of drugs.  
 
 I'll continue to update this section as new results are realized.  As mentioned before, other potential areas of improvement listed in the `To_Do.ipynb` notebook.  
@@ -82,7 +75,7 @@ I'll continue to update this section as new results are realized.  As mentioned 
 <h2><b>Additional Opportunities for Improvement of the Project</b></h2>
 
 <h3><b>Additional Information on the Patent Data</b></h3>
-Because I only have 1779 entries for patent dates, I figure I'll need more data for my predictive model.  As it turns out, [patents issued after 1995]('http://www.drugsdb.com/blog/how-long-is-a-drug-patent-good-for.html') are valid for 20 years from the patent application filing (assuming maintenance fees are paid every 3.5, 7.5, and 11.5 years after the patent is granted).  From this, I can extrapolate two things: 
+Because I only have 1779 entries for patent dates, I figure I'll need more data for my predictive model.  As it turns out, [patents issued after 1995](http://www.drugsdb.com/blog/how-long-is-a-drug-patent-good-for.html) are valid for 20 years from the patent application filing (assuming maintenance fees are paid every 3.5, 7.5, and 11.5 years after the patent is granted).  From this, I can extrapolate two things: 
 
 * I may be able to extrapolate data for 'Patent_Expire_Date_Text' column based on 'Patent_Submission_Date'.  I'll add this information to a third column instead of filling in the NaN values of the 'Patent_Submission_Date' so I can identify any deviations the results with the actual 'Patent_Expire_Date_Text' information that I imported earlier.
   * Additional factors to consider: 
@@ -100,10 +93,10 @@ I'll evaluate the dates we currently have to see if a pattern is evident, before
 
 <h3><b>Other datasets:</b></h3>
 
-* [Pharmaceutical Preparation Manufacturing - Producer Price Index by Industry]('https://fred.stlouisfed.org/series/PCU325412325412')
-  * [Breakdown of the above]('https://fred.stlouisfed.org/release/tables?rid=46&eid=135301#snid=135309')
+* [Pharmaceutical Preparation Manufacturing - Producer Price Index by Industry](https://fred.stlouisfed.org/series/PCU325412325412)
+  * [Breakdown of the above](https://fred.stlouisfed.org/release/tables?rid=46&eid=135301#snid=135309)
     
-* [Producer Price Index by Industry: Pharmacies and Drug Stores: Retailing of Prescription Drugs]('https://fred.stlouisfed.org/series/PCU4461104461101')
+* [Producer Price Index by Industry: Pharmacies and Drug Stores: Retailing of Prescription Drugs](https://fred.stlouisfed.org/series/PCU4461104461101)
 * SEC 10-k/10-q data --> pharma companies' financial data (R&D, Profits, Revenue)
 * Pharma stock prices over time (proxy for SEC data?)
 * Number of pieces of legislation pertaining to pharmaceuticals (may need sentiment analysis for these to determine if they're pro/contra pharma)
