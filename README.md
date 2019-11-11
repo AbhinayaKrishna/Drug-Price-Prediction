@@ -3,6 +3,9 @@
 <h3><b>Motivation</b></h3>
 Pharmaceutical companies are not required to publish prices, therefore, we'll be drawing on a dataset from Medicare, who does publish prices.  Lack of price transparency is typically cited as a reason for high prices.  This study looks to shed some light on that, and to create a model that can predict drug prices months out from the current date.
 
+<h3><b>Audience</b></h3>
+This project aims to be a tool for pharmacies, pharmacy benefit managers, and other entities who may, for example, be in negotiations regarding pharmaceutical drug prices.  With the objective of providing clearer information regarding the future of drug prices, the steps required to achieve lower drug costs may also be more transparent.
+
 <h3><b>Structure</b></h3>
 This project demonstrates methods required to obtain, aggregate, and clean data in order to create predictions of pharmaceutical drug prices via a machine learning model.  The notebooks (and .py file) in this repository are meant to be used in the following order and for the named purposes:
 
@@ -120,3 +123,5 @@ A few definitions to keep in mind:
 * [Forbes - Price Transparency: Why are Drug Prices Such a Bitter Pill to Swallow]('https://www.forbes.com/sites/joeharpaz/2019/05/17/price-transparency-why-are-drug-prices-such-a-bitter-pill-to-swallow/#61c45298396d')
    
 * [NADAC pricing in the real world]('https://us.milliman.com/uploadedFiles/insight/2018/NADAC-plus.pdf')
+
+* [Fact Sheet: How much money could Medicare save by negotiating prescription drug prices?]('http://www.crfb.org/press-releases/fact-sheet-how-much-money-could-medicare-save-negotiating-prescription-drug-prices')
