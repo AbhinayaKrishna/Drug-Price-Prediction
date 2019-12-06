@@ -120,19 +120,15 @@ historical_data = historical_data.loc[:, ['ndc', 'date', 'nadac_per_unit']]
 historical_data = historical_data.sort_values('date')
 historical_source = ColumnDataSource(historical_data[historical_data.loc[:, 'ndc']=='781593600'])
 #
-import datetime as dt#########
-# prediction_data.loc[:, 'date'] = dt.datetime(2020, 3, 31)#########
-prediction_data.loc[:, 'year'] = 2020#########
-prediction_data.loc[:, 'month'] = 3#########
-prediction_data.loc[:, 'day'] = 31#########
-first_prediction = lin_model.predict(prediction_data)#########
-# print(first_prediction)
-# print('first element:', first_prediction[0][0])######
-# print('second element:', first_prediction[0][1][0])######
-first_prediction = pd.DataFrame(data = {'ndc':first_prediction[0][0], 'predictions':first_prediction[0][1][0]}, index = [0])########these element slices are correct
-# first_prediction.rename(columns = {0:'ndc', 1:'predictions'}, inplace = True)#######
-first_prediction['date'] = pd.to_datetime(prediction_data[['year', 'month', 'day']], infer_datetime_format=True, errors = 'coerce') ####
-prediction_source = ColumnDataSource(first_prediction[first_prediction.loc[:, 'ndc']=='781593600'])#######
+import datetime as dt
+# prediction_data.loc[:, 'date'] = dt.datetime(2020, 3, 31)
+prediction_data.loc[:, 'year'] = 2020
+prediction_data.loc[:, 'month'] = 3
+prediction_data.loc[:, 'day'] = 31
+first_prediction = lin_model.predict(prediction_data)
+first_prediction = pd.DataFrame(data = {'ndc':first_prediction[0][0], 'predictions':first_prediction[0][1][0]}, index = [0]) #these element slices are correct
+first_prediction['date'] = pd.to_datetime(prediction_data[['year', 'month', 'day']], infer_datetime_format=True, errors = 'coerce')
+prediction_source = ColumnDataSource(first_prediction[first_prediction.loc[:, 'ndc']=='781593600'])
 
 id_list = list(prediction_data['ndc'].astype(str))
 
@@ -145,7 +141,7 @@ plot.add_tools(HoverTool(tooltips=[('Date', '@date{%F}'), ('Price', '@nadac_per_
                                     formatters = {'date': 'datetime'}))
 
 plot.line('date', 'nadac_per_unit', source=historical_source)
-plot.scatter('date', 'predictions', source=prediction_source)########
+plot.scatter('date', 'predictions', source=prediction_source)
 
 # Set up widgets
 id_select = Select(title='drug_id', value='781593600', options=id_list)
@@ -159,10 +155,14 @@ def update_data(attrname, old, new):
     new_historical = historical_data[historical_data['ndc']==curr_id]
     new_historical = new_historical.sort_values('date')
 
-    new_predicted = prediction_data[prediction_data['ndc']==curr_id]
+    prediction_data = prediction_data[prediction_data.loc[:, 'ndc']==curr_id]
+    new_prediction_data = lin_model.predict(prediction_data)
+    new_prediction_data = pd.DataFrame(data = {'ndc':new_prediction_data[0][0], 'predictions':new_prediction_data[0][1][0]}, index = [0]) #these element slices are correct
+    new_prediction_data['date'] = pd.to_datetime(prediction_data[['year', 'month', 'day']], infer_datetime_format=True, errors = 'coerce')
+    new_prediction_source = ColumnDataSource(new_prediction_data)
     # Overwrite current data with new data
     historical_source.data = ColumnDataSource.from_df(new_historical)
-    prediction_source.data = ColumnDataSource.from_df(new_predicted)
+    # prediction_source.data = ColumnDataSource.from_df(new_predicted)
 
 # Action when select menu changes
 id_select.on_change('value', update_data)
