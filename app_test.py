@@ -90,8 +90,8 @@ lin_model = GroupbyEstimator('ndc', pipeline_factory).fit(train_data,'nadac_per_
 # Prep data for plotting (from training/testing data)
 def format_data(dataframe, filename, test = False):#########
     #change columns to datetime
+    dataframe.loc[:, 'ndc'] = dataframe.loc[:, 'ndc'].astype('int64') #int64 needed due to size of numbers
     if test:
-        dataframe.loc[:, 'ndc'] = dataframe.loc[:, 'ndc'].astype('int64')
         dataframe.loc[:, ['effective_date_year', 'effective_date_month', 'effective_date_day']] = dataframe.loc[:, ['effective_date_year', 'effective_date_month', 'effective_date_day']].astype(str)
         dataframe.rename(columns = {'effective_date_year': 'year', 'effective_date_month': 'month', 'effective_date_day': 'day'}, inplace = True)
         dataframe.loc[:, 'date'] = pd.to_datetime(dataframe[['year', 'month', 'day']], format = '%Y-%m-%d')
@@ -100,16 +100,18 @@ def format_data(dataframe, filename, test = False):#########
         dataframe.sort_values(['ndc', 'date'])
     else:
         dataframe.rename(columns = {'effective_date_year': 'year', 'effective_date_month': 'month', 'effective_date_day': 'day'}, inplace = True)
-
     #Keep only unique values
-    dataframe = dataframe.drop_duplicates(subset = 'ndc')
+    dataframe.loc[:, 'year'] = dataframe.loc[:, 'year'].astype(int)
+    dataframe.loc[:, 'month'] = dataframe.loc[:, 'month'].astype(int)
+    dataframe.loc[:, 'day'] = dataframe.loc[:, 'day'].astype(int)
+    dataframe.loc[:, 'nadac_per_unit'] = dataframe.loc[:, 'nadac_per_unit'].astype('float16')
     return dataframe
 
 #Save formatted data as follows
 historical_data = format_data(train_data, 'historical_data', test = True)
 prediction_data = format_data(test_data, 'pred_data')
 
-#Attempting new plotting session
+#Plotting session
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Select, DataRange1d, HoverTool
@@ -117,31 +119,40 @@ from bokeh.plotting import figure
 
 # Set up (initial) data
 historical_data = historical_data.loc[:, ['ndc', 'date', 'nadac_per_unit']]
-historical_data = historical_data.sort_values('date')
-historical_source = ColumnDataSource(historical_data[historical_data.loc[:, 'ndc']=='781593600'])
+hist_temp = historical_data[historical_data.loc[:, 'ndc']==781593600].sort_values('date')
+historical_source = ColumnDataSource(data = hist_temp)
+
 #
 import datetime as dt
-# prediction_data.loc[:, 'date'] = dt.datetime(2020, 3, 31)
-prediction_data.loc[:, 'year'] = 2020
-prediction_data.loc[:, 'month'] = 3
-prediction_data.loc[:, 'day'] = 31
-first_prediction = lin_model.predict(prediction_data)
-first_prediction = pd.DataFrame(data = {'ndc':first_prediction[0][0], 'predictions':first_prediction[0][1][0]}, index = [0]) #these element slices are correct
-first_prediction['date'] = pd.to_datetime(prediction_data[['year', 'month', 'day']], infer_datetime_format=True, errors = 'coerce')
-prediction_source = ColumnDataSource(first_prediction[first_prediction.loc[:, 'ndc']=='781593600'])
+#Get initial prediction
+date = dt.datetime.strptime('-'.join(('2020', '3', '31')), '%Y-%m-%d')
+new_prediction_data = prediction_data[prediction_data.loc[:, 'ndc']==781593600] #working
+new_prediction_data.loc[:, 'year'] = date.year
+new_prediction_data.loc[:, 'month'] = date.month
+new_prediction_data.loc[:, 'day'] = date.day
+new_prediction_data = lin_model.predict(new_prediction_data)
+new_prediction_data = pd.DataFrame(data = {'ndc':new_prediction_data[0][0], 'nadac_per_unit':new_prediction_data[0][1][0]}, index = [0]) #these element slices are correct
+new_prediction_data['date'] = pd.to_datetime(date, format='%Y-%m-%d')
+new_prediction_data['ndc'] = new_prediction_data['ndc'].astype(float).astype('int64')
+new_prediction_data['nadac_per_unit'] = new_prediction_data['nadac_per_unit'].astype('float16')
+
+prediction_source = ColumnDataSource(data=new_prediction_data)
 
 id_list = list(prediction_data['ndc'].astype(str))
-
 # Set up plot
 plot = figure(plot_height=800, plot_width=800, title='Drug Price Over Time',
               x_axis_type = 'datetime',
               tools="crosshair, pan, reset, save, wheel_zoom")
+plot.xaxis.axis_label = 'Time'
+plot.yaxis.axis_label = 'Price ($)'
+plot.axis.axis_label_text_font_style = 'bold'
+plot.grid.grid_line_alpha = 0.8
 plot.x_range = DataRange1d(range_padding = .01)
 plot.add_tools(HoverTool(tooltips=[('Date', '@date{%F}'), ('Price', '@nadac_per_unit')],
                                     formatters = {'date': 'datetime'}))
 
 plot.line('date', 'nadac_per_unit', source=historical_source)
-plot.scatter('date', 'predictions', source=prediction_source)
+plot.scatter('date', 'nadac_per_unit', source=prediction_source, fill_color='red', size=8)
 
 # Set up widgets
 id_select = Select(title='drug_id', value='781593600', options=id_list)
@@ -152,17 +163,22 @@ def update_data(attrname, old, new):
     #Get the current select value
     curr_id = id_select.value
     # Generate the new data
-    new_historical = historical_data[historical_data['ndc']==curr_id]
+    new_historical = historical_data[historical_data.loc[:, 'ndc']==int(curr_id)]
     new_historical = new_historical.sort_values('date')
 
-    prediction_data = prediction_data[prediction_data.loc[:, 'ndc']==curr_id]
-    new_prediction_data = lin_model.predict(prediction_data)
-    new_prediction_data = pd.DataFrame(data = {'ndc':new_prediction_data[0][0], 'predictions':new_prediction_data[0][1][0]}, index = [0]) #these element slices are correct
-    new_prediction_data['date'] = pd.to_datetime(prediction_data[['year', 'month', 'day']], infer_datetime_format=True, errors = 'coerce')
-    new_prediction_source = ColumnDataSource(new_prediction_data)
+    new_prediction_data = prediction_data[prediction_data.loc[:, 'ndc']==int(curr_id)] #working
+    date = dt.datetime.strptime('-'.join(('2020', '3', '31')), '%Y-%m-%d')
+    new_prediction_data.loc[:, 'year'] = date.year
+    new_prediction_data.loc[:, 'month'] = date.month
+    new_prediction_data.loc[:, 'day'] = date.day
+    new_prediction_data = lin_model.predict(new_prediction_data)
+    new_prediction_data = pd.DataFrame(data = {'ndc':new_prediction_data[0][0], 'nadac_per_unit':new_prediction_data[0][1][0]}, index = [0]) #these element slices are correct
+    new_prediction_data['date'] = pd.to_datetime(date, format='%Y-%m-%d')
+    new_prediction_data['ndc'] = new_prediction_data['ndc'].astype(float).astype('int64')
+
     # Overwrite current data with new data
     historical_source.data = ColumnDataSource.from_df(new_historical)
-    # prediction_source.data = ColumnDataSource.from_df(new_predicted)
+    prediction_source.data = ColumnDataSource.from_df(new_prediction_data)
 
 # Action when select menu changes
 id_select.on_change('value', update_data)
