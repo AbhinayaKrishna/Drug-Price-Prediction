@@ -1,9 +1,9 @@
 <h1>Drug Pricing Prediction Model</h1> 
 
-<h3><b>How to run see the results:<\b></h3>
+<h3>How to run see the results:</h3>
 The final product can be seen by running the `bk_app.py` (bokeh application) from the command line.  Data will be gathered from sources inside the repository, and should not need to be run independently.  The remaining files are simply for understanding the process I went through to produce the final result and, in the future, for improvement of the product.  At the moment, drug ID numbers are used (as opposed to drug names) in the dropdown menu, because drug ID numbers account for a variety of information that names themselves do not.  The decision to sacrifice readability for data accuracy was made in production of this minimum viable product.  I hope to eliminate the necessity of this sacrifice in subsequent versions.
 
-<h3><b>Background & Motivation:<\b></h3>  
+<h3>Background & Motivation:</h3>  
 Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
 
 Pharmaceutical companies are not required to publish prices, therefore, we'll be drawing on a dataset from Medicare, who does publish prices.  Lack of price transparency is typically cited as a reason for high prices.  This study looks to shed some light on that, and to create a model that can predict drug prices months out from the current date.
