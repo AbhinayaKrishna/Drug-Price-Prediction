@@ -1,4 +1,4 @@
-<h1><b>Drug Pricing Prediction Model</b></h1> 
+<h1>Drug Pricing Prediction Model</h1> 
 
 <h3><b>How to run see the results:<\b></h3>
 The final product can be seen by running the `bk_app.py` (bokeh application) from the command line.  Data will be gathered from sources inside the repository, and should not need to be run independently.  The remaining files are simply for understanding the process I went through to produce the final result and, in the future, for improvement of the product.  At the moment, drug ID numbers are used (as opposed to drug names) in the dropdown menu, because drug ID numbers account for a variety of information that names themselves do not.  The decision to sacrifice readability for data accuracy was made in production of this minimum viable product.  I hope to eliminate the necessity of this sacrifice in subsequent versions.
