@@ -1,8 +1,10 @@
 <h1><b>Drug Pricing Prediction Model</b></h1> 
 
-<h3>Background & Motivation:</h3>  
-Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
+<h3><b>How to run see the results:<\b></h3>
+The final product can be seen by running the `bk_app.py` (bokeh application) from the command line.  Data will be gathered from sources inside the repository, and should not need to be run independently.  The remaining files are simply for understanding the process I went through to produce the final result and, in the future, for improvement of the product.  At the moment, drug ID numbers are used (as opposed to drug names) in the dropdown menu, because drug ID numbers account for a variety of information that names themselves do not.  The decision to sacrifice readability for data accuracy was made in production of this minimum viable product.  I hope to eliminate the necessity of this sacrifice in subsequent versions.
 
+<h3><b>Background & Motivation:<\b></h3>  
+Pharmaceutical drug spending in the U.S. is on a true upward trend.  Not only is the number of drugs being produced on the rise, but the number of Americans taking those drugs is also increasing.  An accurate projection of drug prices enhances transparency of our healthcare system and allows the public, government, and industry to make more informed decisions regarding their health and finances.
 
 Pharmaceutical companies are not required to publish prices, therefore, we'll be drawing on a dataset from Medicare, who does publish prices.  Lack of price transparency is typically cited as a reason for high prices.  This study looks to shed some light on that, and to create a model that can predict drug prices months out from the current date.
 
@@ -19,7 +21,7 @@ This project demonstrates methods required to obtain, aggregate, and clean data 
 5) `MergingAllData.ipynb` - Merging of price and patent data (which is subsequently used again in ExploratoryPlots.ipynb)
 6) `FeatureEngineering&Encoding.ipynb` - Engineering, and binary encoding, of features
 7) `Regression&Plotting.ipynb` - Light formatting and prep for regression, train-test-splitting.  Also contains the custom drug-grouping class for regressions and Bokeh plot code currently in development. This notebook currently makes use of the drug's NDC number (a unique identification number assigned by the FDA.  This number allows us to distinguis between not only drug names, but also delivery methods, strengths, and other factors, where a drug name itself would not necessarily suffice. This decision was made at the sacrifice of some readability. 
-8) `Drug_Price_Plots.py` - Bokeh plot application used to view plots of drug prices over time. Final product to include predictions created in notebook 7.  Must be run from the commandline with `bokeh serve --show Drug_Price_Plots.py`
+8) `Drug_Price_Plots.py` - Bokeh plot application used to view plots of drug prices over time. Final product to include predictions created in notebook 7.  Must be run from the commandline with `bokeh serve bk_app.py --show`
 
 <b>Additionally:</b> 
 * `To_Do.ipynb` notebook contains suggestions and initial code for improvements to the minimum viable product.
