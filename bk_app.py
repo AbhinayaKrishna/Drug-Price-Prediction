@@ -1,22 +1,10 @@
 import pandas as pd
-import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 # %matplotlib inline
 
 import dill
 Price_Patent_Reg = dill.load(open('data/features_created.pkd', 'rb'))
-
-Price_Patent_Reg = Price_Patent_Reg.drop([
-                                         'drug_age',
-                                         'classification_for_rate_setting',
-                                         'corresponding_generic_drug_nadac_per_unit',
-                                         'pricing_unit',
-                                         'ingredient',
-                                         'applicant',
-                                         'type',
-                                         'route',
-                                         ], axis = 1)
 
 Price_Patent_Reg = pd.get_dummies(Price_Patent_Reg, drop_first = True)
 
@@ -110,6 +98,8 @@ def format_data(dataframe, filename, test = False):#########
 #Save formatted data as follows
 historical_data = format_data(train_data, 'historical_data', test = True)
 prediction_data = format_data(test_data, 'pred_data')
+
+# historical_data = historical_data.drop('date', axis=1)
 
 #Plotting session
 from bokeh.io import curdoc
